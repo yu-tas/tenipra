@@ -31,5 +31,5 @@ https://www.figma.com/file/yrCuCW3hDSsZXnOPEQrXuP/%E3%83%86%E3%83%8B%E3%83%97%E3
 ![ER図](https://github.com/yu-tas/tenipra/blob/master/ER%E5%9B%B3.drawio.png)
 
 
-![画面遷移図}(
+![画面遷移図](https://github.com/yu-tas/tenipra/blob/master/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3.drawio.png)
 
