@@ -8,6 +8,7 @@
 ・devise<br>
 ・お気に入り機能<br>
 ・cancancan<br>
+・rails_admin<br>
 ## カリキュラム外の技術
 ・ransack<br>
 ・Active Storage<br>
