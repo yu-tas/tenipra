@@ -1,24 +1,35 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+開発言語
+Ruby3.0.1
+Rails6.1.7.4
+就業Termの技術
+AWS EC2
+devise
+お気に入り機能
+rails_admin
+cancancan
+カリキュラム外の技術
+ransack
+Active Storage
+実行手順
+$git clone git@github.com:kasumisogabe/PetalPush.git
+$cd PetalPush
+$bundle install
+$yarn install
+$rails db:create && rails db:migrate
+$rails s
+カタログ設計
+https://docs.google.com/spreadsheets/d/1asbB4KPnGHkvihMedilIkyMP1r7tz5S_FqchcDPxj9U/edit?usp=sharing
 
-Things you may want to cover:
+テーブル定義書
+https://docs.google.com/spreadsheets/d/1asbB4KPnGHkvihMedilIkyMP1r7tz5S_FqchcDPxj9U/edit?usp=sharing
 
-* Ruby version
+ワイヤーフレーム
+https://cacoo.com/diagrams/3lgFxtkbwFeS95Rt/43220
 
-* System dependencies
+ER図
+ER図
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+画面遷移図
+画面遷移図
