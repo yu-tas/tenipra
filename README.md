@@ -13,23 +13,21 @@ cancancan
 ransack
 Active Storage
 実行手順
-$git clone git@github.com:kasumisogabe/PetalPush.git
-$cd PetalPush
+$git clone git@github.com:yu-tas/tenipra.git
+$cd tenipra
 $bundle install
 $yarn install
 $rails db:create && rails db:migrate
 $rails s
 カタログ設計
-https://docs.google.com/spreadsheets/d/1asbB4KPnGHkvihMedilIkyMP1r7tz5S_FqchcDPxj9U/edit?usp=sharing
-
+https://docs.google.com/spreadsheets/d/1mFagQ-RT8bcyDyCVwaGWMmTNkfGH9vObddBfA1pGm14/edit?pli=1#gid=1938848156
 テーブル定義書
-https://docs.google.com/spreadsheets/d/1asbB4KPnGHkvihMedilIkyMP1r7tz5S_FqchcDPxj9U/edit?usp=sharing
-
+https://docs.google.com/spreadsheets/d/1mFagQ-RT8bcyDyCVwaGWMmTNkfGH9vObddBfA1pGm14/edit?pli=1#gid=1938848156
 ワイヤーフレーム
-https://cacoo.com/diagrams/3lgFxtkbwFeS95Rt/43220
+https://www.figma.com/file/yrCuCW3hDSsZXnOPEQrXuP/%E3%83%86%E3%83%8B%E3%83%97%E3%83%A9%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%BC%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0?type=design&node-id=0-1&mode=design&t=nAKYFyTMBpL4F9RI-0
 
 ER図
-ER図
+
 
 画面遷移図
 画面遷移図
