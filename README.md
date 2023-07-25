@@ -7,7 +7,7 @@
 ・AWS EC2<br>
 ・devise<br>
 ・お気に入り機能<br>　
-・rails_admin<br>
+rails_admin<br>
 ・cancancan<br>
 ## カリキュラム外の技術
 ・ransack<br>
