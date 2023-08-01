@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_01_043555) do
+ActiveRecord::Schema.define(version: 2023_08_01_055244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "difficulty_levels", force: :cascade do |t|
+    t.string "step"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "menus", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "video_link"
+    t.integer "difficulty_level_id"
+    t.integer "practice_duration"
+    t.integer "sets"
+    t.integer "player_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

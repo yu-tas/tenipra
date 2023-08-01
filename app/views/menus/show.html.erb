@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Menu List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5 mb-5">メニュー一覧</h1>
+
+    <table class="table table-striped mt-5">
+        <thead>
+        <tr>
+            <th>タイトル</th>
+            <th>説明</th>
+            <th>ビデオリンク</th>
+            <th>難易度</th>
+            <th>練習時間</th>
+            <th>セット数</th>
+            <th>プレイヤー数</th>
+            <th>詳細</th>
+        </tr>
+        </thead>
+    <tbody>
+        <% @menus.each do |menu| %>
+            <tr>
+                <td><%= menu.title %></td>
+                <td><%= menu.description %></td>
+                <td><%= menu.video_link %></td>
+                <td><%= menu.difficulty_level.step %></td>
+                <td><%= menu.practice_duration %></td>
+                <td><%= menu.sets %></td>
+                <td><%= menu.player_count %></td>
+                <td>
+                    <%= link_to '詳細', menu_path(menu.id), class: 'btn btn-info' %>
+                </td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+</div>
+</body>
+</html>
