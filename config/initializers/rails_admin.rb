@@ -6,6 +6,7 @@ RailsAdmin.config do |config|
   ## == Devise ==
   config.authenticate_with do
     warden.authenticate! scope: :user
+    redirect_to main_app.root_path unless current_user.admin?
   end
   config.current_user_method(&:current_user)
 
@@ -27,16 +28,28 @@ RailsAdmin.config do |config|
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
-    new
+    new do
+      only ['User', 'Menu'] do
+        bindings[:view]._current_user.admin?
+      end
+    end
     export
     bulk_delete
     show
-    edit
-    delete
+    edit do
+      only ['User', 'Menu'] do
+        bindings[:view]._current_user.admin?
+      end
+    end
+    delete do
+      only ['User', 'Menu'] do
+        bindings[:view]._current_user.admin?
+      end
+    end
     show_in_app
-
+  end
+  
     ## With an audit adapter, you can add:
     # history_index
     # history_show
-  end
 end
