@@ -24,20 +24,28 @@
         </tr>
         </thead>
     <tbody>
-        <% @menus.each do |menu| %>
-            <tr>
-                <td><%= menu.title %></td>
-                <td><%= menu.description %></td>
-                <td><%= menu.video_link %></td>
-                <td><%= menu.difficulty_level.step %></td>
-                <td><%= menu.practice_duration %></td>
-                <td><%= menu.sets %></td>
-                <td><%= menu.player_count %></td>
-                <td>
-                    <%= link_to '詳細', menu_path(menu.id), class: 'btn btn-info' %>
-                </td>
-            </tr>
+  <% @menus.each do |menu| %>
+    <tr>
+      <td><%= menu.title %></td>
+      <td><%= menu.description %></td>
+      <td>
+        <% if menu.video.attached? %>
+          <video width="320" height="240" controls>
+            <source src="<%= url_for(menu.video) %>" type="video/mp4">
+          </video>
         <% end %>
+      </td>
+      <td><%= menu.difficulty_level.step %></td>
+      <td><%= menu.practice_duration %></td>
+      <td><%= menu.sets %></td>
+      <td><%= menu.player_count %></td>
+      <td>
+        <%= link_to '詳細', menu_path(menu.id), class: 'btn btn-info' %>
+      </td>
+    </tr>
+  <% end %>
+</tbody>
+
       </tbody>
     </table>
 
