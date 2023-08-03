@@ -7,14 +7,21 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Menu Confirmation</h1>
-<p>Title: <%= @menu.title %></p>
-<p>Description: <%= @menu.description %></p>
-<p>Created At: <%= @menu.created_at.strftime('%Y-%m-%d %H:%M:%S') %></p>
-<p>Video Link: <%= @menu.video_link %></p>
-<p>Difficulty Level: <%= @menu.difficulty_level.step %></p>
-<p>Practice Duration: <%= @menu.practice_duration %></p>
-<p>Sets: <%= @menu.sets %></p>
-<p>Player Count: <%= @menu.player_count %></p>
+  <h1>Menu Confirmation</h1>
+  <p>Title: <%= @menu.title %></p>
+  <p>Description: <%= @menu.description %></p>
+  <p>Created At: <%= @menu.created_at.strftime('%Y-%m-%d %H:%M:%S') %></p>
+  <% if @menu.video.attached? %>
+    <p>Video: </p>
+    <video width="320" height="240" controls>
+      <source src="<%= url_for(@menu.video) %>" type="video/mp4">
+    </video>
+  <% else %>
+    <p>No video attached</p>
+  <% end %>
+  <p>Difficulty Level: <%= @menu.difficulty_level.step %></p>
+  <p>Practice Duration: <%= @menu.practice_duration %></p>
+  <p>Sets: <%= @menu.sets %></p>
+  <p>Player Count: <%= @menu.player_count %></p>
+</body>
 
-<%= link_to "Back to Menu List", menus_path %>
