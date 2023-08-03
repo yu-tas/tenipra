@@ -49,6 +49,17 @@ RailsAdmin.config do |config|
     show_in_app
   end
   
+  config.model 'Menu' do
+    edit do
+      field :title
+      field :description
+      field :video, :active_storage
+      field :difficulty_level
+      field :practice_duration
+      field :sets
+      field :player_count
+    end
+  end
     ## With an audit adapter, you can add:
     # history_index
     # history_show
