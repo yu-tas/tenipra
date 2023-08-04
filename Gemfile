@@ -40,5 +40,5 @@ gem 'rails_admin'
 gem 'cancancan'
 gem 'aws-sdk-s3', require: false
 gem 'dotenv-rails'
-
+gem 'ransack'
 
