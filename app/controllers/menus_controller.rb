@@ -9,6 +9,3 @@ class MenusController < ApplicationController
     @menu = Menu.find(params[:id])
   end
 end
-  
-
-  
