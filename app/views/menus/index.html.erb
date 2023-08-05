@@ -1,63 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Menu List</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-</head>
-<body>
+
 <div class="container">
     <h1>メニュー検索</h1>
-      <%= search_form_for @q, url: menus_path do |f| %>
+    <%= search_form_for @q, url: menus_path do |f| %>
         <%= f.label :title_cont, 'メニュー名' %>
         <%= f.search_field :title_cont %>
         <%= f.label :difficulty_level_step_cont, 'レベル' %>
         <%= f.search_field :difficulty_level_step_cont %>
         <br>
-        <%= f.submit '検索' %>
-      <% end %>
+        <%= f.submit '検索', class: 'btn btn-primary mt-3' %>
+    <% end %>
+
     <h1 class="mt-5 mb-5">メニュー一覧</h1>
-
     <table class="table table-striped mt-5">
-        <thead>
-        <tr>
-            <th>タイトル</th>
-            <th>説明</th>
-            <th>ビデオリンク</th>
-            <th>難易度</th>
-            <th>練習時間</th>
-            <th>セット数</th>
-            <th>プレイヤー数</th>
-            <th>詳細</th>
-        </tr>
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">タイトル</th>
+                <th scope="col">ビデオ</th>
+                <th scope="col">難易度</th>
+                <th scope="col">詳細</th>
+            </tr>
         </thead>
-    <tbody>
-  <% @menus.each do |menu| %>
-    <tr>
-      <td><%= menu.title %></td>
-      <td><%= menu.description %></td>
-      <td>
-        <% if menu.video.attached? %>
-          <video width="320" height="240" controls>
-            <source src="<%= url_for(menu.video) %>" type="video/mp4">
-          </video>
+        <tbody>
+        <% @menus.each do |menu| %>
+            <tr>
+                <td><%= menu.title %></td>
+                <td>
+                    <% if menu.video.attached? %>
+                        <video width="320" height="240" controls>
+                            <source src="<%= url_for(menu.video) %>" type="video/mp4">
+                        </video>
+                    <% end %>
+                </td>
+                <td><%= menu.difficulty_level.step %></td>
+                <td>
+                    <%= link_to '詳細', menu_path(menu.id), class: 'btn btn-primary' %>
+                </td>
+            </tr>
         <% end %>
-      </td>
-      <td><%= menu.difficulty_level.step %></td>
-      <td><%= menu.practice_duration %></td>
-      <td><%= menu.sets %></td>
-      <td><%= menu.player_count %></td>
-      <td>
-        <%= link_to '詳細', menu_path(menu.id), class: 'btn btn-info' %>
-      </td>
-    </tr>
-  <% end %>
-</tbody>
-
-      </tbody>
+        </tbody>
     </table>
-
 </div>
-</body>
-</html>
+
+

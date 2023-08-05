@@ -1,27 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Menu List</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-</head>
-<body>
-  <h1>Menu Confirmation</h1>
-  <p>Title: <%= @menu.title %></p>
-  <p>Description: <%= @menu.description %></p>
-  <p>Created At: <%= @menu.created_at.strftime('%Y-%m-%d %H:%M:%S') %></p>
-  <% if @menu.video.attached? %>
-    <p>Video: </p>
-    <video width="320" height="240" controls>
-      <source src="<%= url_for(@menu.video) %>" type="video/mp4">
-    </video>
-  <% else %>
-    <p>No video attached</p>
-  <% end %>
-  <p>Difficulty Level: <%= @menu.difficulty_level.step %></p>
-  <p>Practice Duration: <%= @menu.practice_duration %></p>
-  <p>Sets: <%= @menu.sets %></p>
-  <p>Player Count: <%= @menu.player_count %></p>
-</body>
+  <h1>メニュー詳細</h1>
+<p>タイトル: <%= @menu.title %></p>
+<p>説明: <%= @menu.description %></p>
+<p>作成日時: <%= @menu.created_at.strftime('%Y-%m-%d %H:%M:%S') %></p>
+<% if @menu.video.attached? %>
+  <p>Video: </p>
+  <video width="640" height="480" controls>
+    <source src="<%= url_for(@menu.video) %>" type="video/mp4">
+  </video>
+<% else %>
+  <p>No video attached</p>
+<% end %>
+<p>Difficulty Level: <%= @menu.difficulty_level.step %></p>
+
+<%= form_with id: 'calculate-form' do |f| %>
+  <%= f.label :practice_duration, '練習時間（分）' %>
+  <%= f.number_field :practice_duration, name: 'practice_duration' %>
+  <br>
+  <%= f.label :player_count_form, '人数' %>
+  <%= f.number_field :player_count_form, name: 'player_count' %>
+  <br>
+  <%= f.label :court_count, 'コート数' %>
+  <%= f.number_field :court_count, name: 'court_count' %>
+  <br>
+  <%= f.label :set_count, 'セット数' %>
+  <%= f.number_field :set_count, name: 'set_count' %>
+  <br>
+  <%= f.button '計算', type: 'button', id: 'calculate-button' %>
+<% end %>
+
+<p id="result"></p>
+
+<%= image_tag("テニスコート.jpeg", id: "court", alt: "Tennis Court") %>
+<div id="court-container">
+  <canvas id="canvas" width="400" height="200"></canvas>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('#calculate-button').addEventListener('click', function() {
+        const practice_duration = parseFloat(document.querySelector('input[name="practice_duration"]').value);
+        const player_count = parseFloat(document.querySelector('input[name="player_count"]').value);
+        const court_count = parseFloat(document.querySelector('input[name="court_count"]').value);
+        const set_count = parseFloat(document.querySelector('input[name="set_count"]').value);
+
+        const result = practice_duration / player_count / court_count / set_count;
+        const playerPerCourt = Math.floor(player_count / court_count);
+        const extraPlayer = player_count % court_count;
+
+        document.querySelector('#result').textContent = '1回あたりの交代時間は' + result + '分です。' + '1コートあたりの人数は' + playerPerCourt + '人です。' + (extraPlayer > 0 ? extraPlayer + '面は' + (playerPerCourt + 1) + '人です。' : '');
+
+        const courtContainer = document.getElementById('court-container');
+        courtContainer.innerHTML = '';
+
+        for (let i = 0; i < court_count; i++) {
+            const canvas = document.createElement('canvas');
+            canvas.id = 'canvas-' + i;
+            canvas.className = 'canvas';
+            canvas.width = 400;
+            canvas.height = 200;
+            courtContainer.appendChild(canvas);
+            
+            const ctx = canvas.getContext('2d');
+
+            const count = i < extraPlayer ? playerPerCourt + 1 : playerPerCourt;
+            const courtWidth = canvas.width;
+            const courtHeight = canvas.height;
+
+            const playersPerRow = Math.ceil(Math.sqrt(count));  // players in a single row or column
+            const cellWidth = courtWidth / playersPerRow;
+            const cellHeight = courtHeight / playersPerRow;
+
+            for (let j = 0; j < count; j++) {
+                const x = (j % playersPerRow + 0.5) * cellWidth;
+                const y = (Math.floor(j / playersPerRow) + 0.5) * cellHeight;
+
+                ctx.font = '20px serif';
+                ctx.fillText(`👦${j + 1}`, x, y);
+            }
+        }
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+<%# <label for="player_count_canvas">人数:</label>
+<select id="player_count_canvas">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+</select>
+
+<%= image_tag("テニスコート.jpeg", id: "court", alt: "Tennis Court") %>
+<%# <canvas id="canvas" width="400" height="200"></canvas> %>
+
+
+<%# <%= javascript_pack_tag 'menu/show' %> 
+
 
