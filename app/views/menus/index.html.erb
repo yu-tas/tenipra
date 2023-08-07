@@ -22,23 +22,55 @@
         </thead>
         <tbody>
         <% @menus.each do |menu| %>
-            <tr>
-                <td><%= menu.title %></td>
-                <td>
-                    <% if menu.video.attached? %>
-                        <video width="320" height="240" controls>
-                            <source src="<%= url_for(menu.video) %>" type="video/mp4">
-                        </video>
-                    <% end %>
-                </td>
-                <td><%= menu.difficulty_level.step %></td>
-                <td>
-                    <%= link_to '詳細', menu_path(menu.id), class: 'btn btn-primary' %>
-                </td>
-            </tr>
+          <tr>
+            <td><%= menu.title %></td>
+            <td>
+              <% if menu.video.attached? %>
+                <video width="320" height="240" controls>
+                  <source src="<%= url_for(menu.video) %>" type="video/mp4">
+                </video>
+              <% end %>
+            </td>
+            <td><%= menu.difficulty_level.step %></td>
+            <td>
+              <%= link_to '詳細', menu_path(menu.id), class: 'btn btn-primary' %>
+            </td>
+            <td>
+            <% if user_signed_in? && @favorites.key?(menu.id) %>
+              <%= link_to 'お気に入り解除する', favorite_path(id: @favorites[menu.id]), method: :delete, class: 'btn btn-danger favorite-button', data: {menu_id: menu.id, method: 'DELETE'} %>
+            <% elsif user_signed_in? %>
+              <%= link_to 'お気に入りする', favorites_path(menu_id: menu.id), method: :post, class: 'btn btn-primary favorite-button', data: { menu_id: menu.id, method: 'POST'} %>
+            <% end %>
+            </td>
+          </tr>
         <% end %>
         </tbody>
     </table>
 </div>
 
+<script>
+  $(document).on('click', '.favorite-button', function(e) {
+    e.preventDefault();
+    const button = $(this);
+    const menuId = button.data('menu-id');
+    const url = button.attr('href');
+    const method = button.data('method') || 'POST'; // メソッドをdata属性から取得
+  
+    $.ajax({
+      url: url,
+      method: method,
+      dataType: 'json',
+    })
+    .done(function(data) {
+      if (data.status === 'favorited') {
+        button.text('お気に入り解除する').removeClass('btn-primary').addClass('btn-danger');
+      } else {
+        button.text('お気に入りする').removeClass('btn-danger').addClass('btn-primary');
+      }
+    })
+    .fail(function() {
+      alert('エラーが発生しました。');
+    });
+  });
+</script>
 

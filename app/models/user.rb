@@ -6,4 +6,6 @@ class User < ApplicationRecord
       hide
     end
   end
+  has_many :favorites, dependent: :destroy
+  has_many :menus
 end
