@@ -1,9 +1,10 @@
   <h1>メニュー詳細</h1>
-  <% if user_signed_in? && @favorite.present? %>
-    <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger favorite-button', data: {menu_id: @menu.id, method: 'DELETE'} %>
-  <% elsif user_signed_in? %>
-    <%= link_to 'お気に入りする', favorites_path(menu_id: @menu.id), method: :post, class: 'btn btn-primary favorite-button', data: { menu_id: @menu.id, method: 'POST'} %>
-  <% end %>
+<% if user_signed_in? && @favorite.present? %>
+  <%= link_to 'お気に入り解除する', favorite_path(@favorite), method: :delete, class: 'btn btn-danger favorite-button', remote: true, data: {menu_id: @menu.id} %>
+<% elsif user_signed_in? %>
+  <%= link_to 'お気に入りする', favorites_path(menu_id: @menu.id), method: :post, class: 'btn btn-primary favorite-button', remote: true, data: {menu_id: @menu.id} %>
+<% end %>
+
 
 <p>タイトル: <%= @menu.title %></p>
 <p>説明: <%= @menu.description %></p>
@@ -86,31 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-
-$(document).on('click', '.favorite-button', function(e) {
-    e.preventDefault();
-    const button = $(this);
-    const menuId = button.data('menu-id');
-    const url = button.attr('href');
-    const method = button.data('method') || 'POST'; // メソッドをdata属性から取得
-  
-    $.ajax({
-      url: url,
-      method: method,
-      dataType: 'json',
-    })
-    .done(function(data) {
-      if (data.status === 'favorited') {
-        button.text('お気に入り解除する').removeClass('btn-primary').addClass('btn-danger');
-      } else {
-        button.text('お気に入りする').removeClass('btn-danger').addClass('btn-primary');
-      }
-    })
-    .fail(function() {
-      alert('エラーが発生しました。');
-    });
-  });
 </script>
 
 
