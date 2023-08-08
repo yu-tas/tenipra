@@ -1,0 +1,23 @@
+ja:
+  activerecord:
+    attributes:
+      menu: 
+        id: 'ID'
+        title: 'タイトル'
+        description: '説明'
+        video_link: 'ビデオリンク'
+        difficulty_level: '難易度'
+        practice_duration: '練習時間'
+        sets: 'セット'
+        player_count: 'プレイヤー数'
+        created_at: '作成日時'
+        updated_at: '更新日時'
+        video: 'ビデオ'
+        favorites: 'お気に入り'
+        favorite_users: 'お気に入りユーザー'
+        menu_labels: 'メニューラベル'
+        labels: 'ラベル'
+
+      difficulty_level: 
+        step: '段階'
+        description: '説明' 
