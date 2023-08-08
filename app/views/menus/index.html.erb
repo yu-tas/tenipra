@@ -17,7 +17,9 @@
                 <th scope="col">タイトル</th>
                 <th scope="col">ビデオ</th>
                 <th scope="col">難易度</th>
+                <th scope="col">ラベル</th>
                 <th scope="col">詳細</th>
+                <th scope="col">お気に入り</th>
             </tr>
         </thead>
         <tbody>
@@ -32,6 +34,11 @@
               <% end %>
             </td>
             <td><%= menu.difficulty_level.step %></td>
+            <td>
+              <% menu.labels.each do |label| %>
+                <%= label.name %>
+              <% end %>
+            </td>
             <td>
               <%= link_to '詳細', menu_path(menu.id), class: 'btn btn-primary' %>
             </td>

@@ -18,6 +18,12 @@
   <p>No video attached</p>
 <% end %>
 <p>Difficulty Level: <%= @menu.difficulty_level.step %></p>
+<p>ラベル：
+<% @menu.labels.each do |label| %>
+  <%= label.name %>
+<% end %>
+</p>
+              
 
 <%= form_with id: 'calculate-form' do |f| %>
   <%= f.label :practice_duration, '練習時間（分）' %>
