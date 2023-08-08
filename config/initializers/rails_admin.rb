@@ -54,13 +54,31 @@ RailsAdmin.config do |config|
       field :title
       field :description
       field :video, :active_storage
-      field :difficulty_level
-      field :practice_duration
-      field :sets
-      field :player_count
+      field :difficulty_level 
+      field :labels
     end
   end
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+
+  config.model 'Label' do
+    list do
+      field :name
+    end
+
+    edit do
+      field :name
+    end
+  end
+
+  config.model 'DifficultyLevel' do
+    list do
+      field :step
+    end
+
+    edit do
+      field :step
+    end
+  end
 end

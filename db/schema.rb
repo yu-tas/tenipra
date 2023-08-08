@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_06_002426) do
+ActiveRecord::Schema.define(version: 2023_08_08_052151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,21 @@ ActiveRecord::Schema.define(version: 2023_08_06_002426) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "labels", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "menu_labels", force: :cascade do |t|
+    t.bigint "menu_id", null: false
+    t.bigint "label_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["label_id"], name: "index_menu_labels_on_label_id"
+    t.index ["menu_id"], name: "index_menu_labels_on_menu_id"
+  end
+
   create_table "menus", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -94,4 +109,6 @@ ActiveRecord::Schema.define(version: 2023_08_06_002426) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "favorites", "menus"
   add_foreign_key "favorites", "users"
+  add_foreign_key "menu_labels", "labels"
+  add_foreign_key "menu_labels", "menus"
 end
