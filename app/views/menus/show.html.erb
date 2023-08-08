@@ -1,4 +1,11 @@
   <h1>メニュー詳細</h1>
+<% if user_signed_in? && @favorite.present? %>
+  <%= link_to 'お気に入り解除する', favorite_path(@favorite), method: :delete, class: 'btn btn-danger favorite-button', remote: true, data: {menu_id: @menu.id} %>
+<% elsif user_signed_in? %>
+  <%= link_to 'お気に入りする', favorites_path(menu_id: @menu.id), method: :post, class: 'btn btn-primary favorite-button', remote: true, data: {menu_id: @menu.id} %>
+<% end %>
+
+
 <p>タイトル: <%= @menu.title %></p>
 <p>説明: <%= @menu.description %></p>
 <p>作成日時: <%= @menu.created_at.strftime('%Y-%m-%d %H:%M:%S') %></p>
