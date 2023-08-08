@@ -36,11 +36,14 @@
               <%= link_to '詳細', menu_path(menu.id), class: 'btn btn-primary' %>
             </td>
             <td>
-            <% if user_signed_in? && @favorites.key?(menu.id) %>
-              <%= link_to 'お気に入り解除する', favorite_path(id: @favorites[menu.id]), method: :delete, class: 'btn btn-danger favorite-button', remote: true, data: {menu_id: menu.id, method: 'DELETE'} %>
+            <% if user_signed_in? && @favorites[menu.id].present? %>
+              <%= link_to 'お気に入り解除する', favorite_path(@favorites[menu.id]), method: :delete, class: 'btn btn-danger favorite-button' %>
             <% elsif user_signed_in? %>
-              <%= link_to 'お気に入りする', favorites_path(menu_id: menu.id), method: :post, class: 'btn btn-primary favorite-button', remote: true, data: { menu_id: menu.id, method: 'POST'} %>
+              <%= link_to 'お気に入りする', favorites_path(menu_id: menu.id), method: :post, class: 'btn btn-primary favorite-button' %>
             <% end %>
+
+
+
             </td>
           </tr>
         <% end %>
