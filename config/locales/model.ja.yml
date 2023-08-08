@@ -1,0 +1,5 @@
+ja:
+  activerecord:
+    attributes:
+      menu:
+        difficult_level: 難易度
