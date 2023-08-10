@@ -1,3 +1,21 @@
+module RailsAdmin
+  module Config
+    module Actions
+      class PlayerPositionsEdit < RailsAdmin::Config::Actions::Base
+        register_instance_option :controller do
+          Proc.new do
+            # ここにカスタムロジックを追加
+            @object = Player.find(params[:id])
+
+            # カスタムビューへのレンダリング
+            render :action => @action.template_name
+          end
+        end
+      end
+    end
+  end
+end
+
 RailsAdmin.config do |config|
   config.asset_source = :webpacker
 
@@ -47,6 +65,9 @@ RailsAdmin.config do |config|
       end
     end
     show_in_app
+    member :player_positions_edit do
+      i18n_key :player_positions_edit
+    end
   end
   
   config.model 'Menu' do
@@ -56,6 +77,9 @@ RailsAdmin.config do |config|
       field :video, :active_storage
       field :difficulty_level 
       field :labels
+      field :player_positions do
+        partial 'player_positions_edit'
+      end
     end
   end
     ## With an audit adapter, you can add:
@@ -82,3 +106,5 @@ RailsAdmin.config do |config|
     end
   end
 end
+
+RailsAdmin::Config::Actions.register(:player_positions_edit, RailsAdmin::Config::Actions::PlayerPositionsEdit)
