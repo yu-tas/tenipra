@@ -43,52 +43,75 @@
 
 <p id="result"></p>
 
-<%= image_tag("テニスコート.jpeg", id: "court", alt: "Tennis Court") %>
-<div id="court-container">
-  <canvas id="canvas" width="400" height="200"></canvas>
-</div>
 
+ <%# <div class="tennis-court-image">
+   <%= image_tag("テニスコート.jpeg", class: "court-image", alt: "Tennis Court") %>
+   <%# <%= image_tag("テニスコート.jpeg", class: "court-image", alt: "Tennis Court") %>
+ </div> 
+
+<div id="court-container"></div>
+
+ <%= link_to 'メニュー一覧に戻る', menus_path, class: 'btn btn-primary' %>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('#calculate-button').addEventListener('click', function() {
         const practice_duration = parseFloat(document.querySelector('input[name="practice_duration"]').value);
         const player_count = parseFloat(document.querySelector('input[name="player_count"]').value);
-        const court_count = parseFloat(document.querySelector('input[name="court_count"]').value);
+        let court_count = parseFloat(document.querySelector('input[name="court_count"]').value);
         const set_count = parseFloat(document.querySelector('input[name="set_count"]').value);
 
         const result = practice_duration / player_count / court_count / set_count;
+        const roundedResult = result.toFixed(1);
         const playerPerCourt = Math.floor(player_count / court_count);
         const extraPlayer = player_count % court_count;
 
-        document.querySelector('#result').textContent = '1回あたりの交代時間は' + result + '分です。' + '1コートあたりの人数は' + playerPerCourt + '人です。' + (extraPlayer > 0 ? extraPlayer + '面は' + (playerPerCourt + 1) + '人です。' : '');
+        document.querySelector('#result').textContent = '1回あたりの交代時間は' + roundedResult + '分です。' + '1コートあたりの人数は' + playerPerCourt + '人です。' + (extraPlayer > 0 ? extraPlayer + '面は' + (playerPerCourt + 1) + '人です。' : '');
+        const courtContainer = document.getElementById('court-container');                              //HTML文書内のIDが 'court-container' の要素を取得し、courtContainer という変数に格納
+        courtContainer.innerHTML = '';                                                                  //court-container' 要素内のすべてのHTMLコンテンツを削除
 
-        const courtContainer = document.getElementById('court-container');
-        courtContainer.innerHTML = '';
+        const maxPlayersPerCourt = 8;                                                                   // 1コートあたりの最大人数
+        court_count = Math.min(Math.max(court_count, 1), 2);                                            // コート数が2以上なら2とする
 
         for (let i = 0; i < court_count; i++) {
+            // 画像の追加
+            const courtImage = document.createElement('img');
+            window.courtImagePath = "<%= image_url('tennis_court.jpeg') %>";                              //jsファイルに移動する場合は、この記述だけHTMLに残す。（scriptタグで囲って）
+            courtImage.src = window.courtImagePath;
+            courtImage.className = 'court-image';
+            courtImage.alt = 'Tennis Court';
+            courtImage.width = 395;                                                                     // 画像の幅を設定
+            courtImage.height = 700;
+            courtContainer.appendChild(courtImage);
+
+            // canvasの追加
             const canvas = document.createElement('canvas');
             canvas.id = 'canvas-' + i;
             canvas.className = 'canvas';
-            canvas.width = 400;
-            canvas.height = 200;
+            canvas.width = 395;
+            canvas.height = 700;
             courtContainer.appendChild(canvas);
             
             const ctx = canvas.getContext('2d');
 
-            const count = i < extraPlayer ? playerPerCourt + 1 : playerPerCourt;
+            let playersForThisCourt = Math.floor(player_count / court_count);                          //このコートに配置するプレーヤー数を計算します。合計プレーヤー数をコート数で割る
+            if (i < player_count % court_count) playersForThisCourt++;                                 //プレーヤー数が均等に分割できない場合、最初のいくつかのコートに追加のプレーヤーを配置
+
+            playersForThisCourt = Math.min(playersForThisCourt, maxPlayersPerCourt);                   //このコートに配置するプレーヤー数が最大値を超えないようにする
+
             const courtWidth = canvas.width;
             const courtHeight = canvas.height;
 
-            const playersPerRow = Math.ceil(Math.sqrt(count));  // players in a single row or column
+            const playersPerRow = Math.ceil(Math.sqrt(playersForThisCourt));  
             const cellWidth = courtWidth / playersPerRow;
             const cellHeight = courtHeight / playersPerRow;
 
-            for (let j = 0; j < count; j++) {
-                const x = (j % playersPerRow + 0.5) * cellWidth;
-                const y = (Math.floor(j / playersPerRow) + 0.5) * cellHeight;
+            const playerPositions = <%= raw @player_positions.to_json %>;
 
-                ctx.font = '20px serif';
-                ctx.fillText(`👦${j + 1}`, x, y);
+            for (let j = 0; j < playersForThisCourt && j < playerPositions.length; j++) {
+                const x = playerPositions[j].x;
+                const y = playerPositions[j].y;
+                ctx.font = '50px serif';
+                ctx.fillText(`😎${j + 1}`, x, y);
             }
         }
     });

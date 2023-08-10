@@ -1,0 +1,25 @@
+.player::before {
+  content: "😎" attr(data-id); /* 絵文字とデータ属性から番号を取得 */
+  color: #fff;
+  text-align: center;
+  line-height: 20px; /* プレイヤーの高さと一致させる */
+  font-size: 50px; /* 絵文字のサイズを50pxに設定 */
+}
+
+#player-positions-editor {
+  position: relative;
+  background-image: image-url('tennis_court.jpeg');
+  background-size: cover;
+  width: 395px;
+  height: 700px;
+  border: 1px solid #ccc;
+}
+
+.player {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #333;
+  cursor: move;
+}
+
