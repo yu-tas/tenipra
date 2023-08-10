@@ -1,0 +1,22 @@
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <%= javascript_pack_tag 'player_positions_editor' %>
+  <%= stylesheet_link_tag 'player_positions_editor' %>
+  <%= javascript_pack_tag 'tennis_court' %>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+
+
+<div id="player-positions-editor">
+  <!-- ここでJavaScriptなどを使ってプレイヤーのポジション情報を編集できるインターフェイスを提供 -->
+  <div class="player" data-id="1" style="left: 50px; top: 100px;"></div>
+  <div class="player" data-id="2" style="left: 150px; top: 100px;"></div>
+  <div class="player" data-id="3" style="left: 200px; top: 100px;"></div>
+  <div class="player" data-id="4" style="left: 150px; top: 50px;"></div>
+</div>
+
+<!-- 隠しフィールドでplayer_positionsの値を送信 -->
+<input type="hidden" name="menu[player_positions]" id="player-positions" value="<%= @object.player_positions.to_json %>">
+
+

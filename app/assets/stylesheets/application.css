@@ -1,6 +1,7 @@
 /*
  *= require_tree .
  *= require_self
+ *= require jquery-ui
  */
 
  #court-container {
@@ -29,10 +30,17 @@
 /* 2番目のキャンバスの位置 */
 .canvas:nth-of-type(2) {
   top: 0;
-  left: 445px; 最初の画像の幅 
+  left: 445px; /* 最初の画像の幅  */
 
 
 
 /* .court-image:last-child {
   margin-right: 0; /* 最後の画像の右側マージンを0に設定 */
 } */
+
+.marker {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  position: absolute;
+}

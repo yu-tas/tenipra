@@ -1,3 +1,14 @@
-// Place all the styles related to the Menus controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+#player-positions-editor {
+  position: relative;
+  width: 395px;
+  height: 700px;
+  border: 1px solid #ccc;
+}
+
+.player {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #333;
+  cursor: move;
+}
