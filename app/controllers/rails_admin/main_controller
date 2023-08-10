@@ -1,0 +1,14 @@
+# app/controllers/rails_admin/main_controller.rb
+module RailsAdmin
+  class MainController < Config.parent_controller
+    def player_positions_edit
+      @object = Player.find(params[:id])
+      
+      if request.post?
+        # Update positions logic here
+      end
+
+      # More logic here as needed
+    end
+  end
+end

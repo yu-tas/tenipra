@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let i = 0; i < court_count; i++) {
             // 画像の追加
             const courtImage = document.createElement('img');
-            window.courtImagePath = "<%= image_url('テニスコート.jpeg') %>";                              //jsファイルに移動する場合は、この記述だけHTMLに残す。（scriptタグで囲って）
+            window.courtImagePath = "<%= image_url('tennis_court.jpeg') %>";                              //jsファイルに移動する場合は、この記述だけHTMLに残す。（scriptタグで囲って）
             courtImage.src = window.courtImagePath;
             courtImage.className = 'court-image';
             courtImage.alt = 'Tennis Court';
@@ -105,19 +105,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const cellWidth = courtWidth / playersPerRow;
             const cellHeight = courtHeight / playersPerRow;
 
-            const playerPositions = [
-              {x: 200, y: 100 },
-              {x: 350, y: 200 },
-              {x: 0,   y: 300 },
-              {x: 250, y: 400 },
-              {x: 250, y: 500 },
-              {x: 250, y: 600 },
-              {x: 250, y: 700 },
-              {x: 250, y: 150 },
+            const playerPositions = <%= raw @player_positions.to_json %>;
 
-            ];
-
-            for (let j = 0; j < playersForThisCourt; j++) {
+            for (let j = 0; j < playersForThisCourt && j < playerPositions.length; j++) {
                 const x = playerPositions[j].x;
                 const y = playerPositions[j].y;
                 ctx.font = '50px serif';
