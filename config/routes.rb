@@ -7,10 +7,14 @@ Rails.application.routes.draw do
   resources :favorites, only: [:index, :create, :destroy]
   
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
   }
   
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    resources :favorites, only: [:index]
+    get :favorites, on: :collection
+  end
 
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'

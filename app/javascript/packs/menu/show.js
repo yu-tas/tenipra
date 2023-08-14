@@ -1,18 +1,18 @@
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('#calculate-button').addEventListener('click', function() {
-        const practice_duration = document.querySelector('input[name="practice_duration"]').value;
-        const player_count = document.querySelector('input[name="player_count"]').value;
-        const court_count = document.querySelector('input[name="court_count"]').value;
-        const set_count = document.querySelector('input[name="set_count"]').value;
+// document.addEventListener('DOMContentLoaded', function() {
+//     document.querySelector('#calculate-button').addEventListener('click', function() {
+//         const practice_duration = document.querySelector('input[name="practice_duration"]').value;
+//         const player_count = document.querySelector('input[name="player_count"]').value;
+//         const court_count = document.querySelector('input[name="court_count"]').value;
+//         const set_count = document.querySelector('input[name="set_count"]').value;
 
-        const result = practice_duration / player_count / court_count / set_count;
-        const playerPerCourt = Math.floor(player_count / court_count);
-        const extraPlayer = player_count % court_count;
+//         const result = practice_duration / player_count / court_count / set_count;
+//         const playerPerCourt = Math.floor(player_count / court_count);
+//         const extraPlayer = player_count % court_count;
         
-        document.querySelector('#result').textContent = '1回あたりの交代時間は' + result + '分です。' + '1コートあたりの人数は' + playerPerCourt + '人です。' + (extraPlayer > 0 ? extraPlayer + '面は' + (playerPerCourt + 1) + '人です。' : '');
+//         document.querySelector('#result').textContent = '1回あたりの交代時間は' + result + '分です。' + '1コートあたりの人数は' + playerPerCourt + '人です。' + (extraPlayer > 0 ? extraPlayer + '面は' + (playerPerCourt + 1) + '人です。' : '');
         
-        const courtContainer = document.getElementById('court-container');
-        courtContainer.innerHTML = '';
+//         const courtContainer = document.getElementById('court-container');
+//         courtContainer.innerHTML = '';
 
 //         for (let i = 0; i < court_count; i++) {
 //             const canvas = document.createElement('canvas');

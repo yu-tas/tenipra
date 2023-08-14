@@ -14,7 +14,20 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-
+gem 'net-smtp'
+gem 'net-imap'
+gem 'net-pop'
+gem 'devise'
+gem 'devise-i18n'
+gem 'rexml'
+gem 'kaminari'
+gem 'rails_admin'
+gem 'cancancan'
+gem 'aws-sdk-s3', require: false
+gem 'dotenv-rails'
+gem 'ransack'
+gem 'pry-rails'
+gem 'image_processing', '~> 1.2'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -35,13 +48,3 @@ end
 
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'devise'
-gem 'devise-i18n'
-gem 'rexml'
-gem 'kaminari'
-gem 'rails_admin'
-gem 'cancancan'
-gem 'aws-sdk-s3', require: false
-gem 'dotenv-rails'
-gem 'ransack'
-gem 'pry-rails'

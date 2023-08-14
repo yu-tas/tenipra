@@ -6,8 +6,11 @@ class User < ApplicationRecord
       hide
     end
   end
+  has_one_attached :profile_image
   has_many :favorites, dependent: :destroy
   has_many :menus
+  validates :name, presence: true, length: { minimum: 2, maximum: 50 }
+  validate :profile_image_size_validation
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
@@ -23,4 +26,12 @@ class User < ApplicationRecord
       user.admin = true
     end
   end
+
+  private
+
+  def profile_image_size_validation
+    if profile_image.attached?
+      errors[:profile_image] << "should be less than 2MB" if profile_image.blob.byte_size > 2.megabytes
+    end
+  end  
 end

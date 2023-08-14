@@ -120,6 +120,9 @@ GEM
       activesupport (>= 5.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
+    image_processing (1.12.2)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -156,6 +159,7 @@ GEM
     marcel (1.0.2)
     matrix (0.4.2)
     method_source (1.0.0)
+    mini_magick (4.11.0)
     mini_mime (1.1.2)
     minitest (5.18.1)
     msgpack (1.7.2)
@@ -171,6 +175,8 @@ GEM
       net-protocol
     nio4r (2.5.9)
     nokogiri (1.15.3-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.15.3-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.5.3)
@@ -237,6 +243,8 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.5)
+    ruby-vips (2.1.4)
+      ffi (~> 1.12)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -299,6 +307,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  x86_64-linux
 
 DEPENDENCIES
   aws-sdk-s3
@@ -309,11 +318,15 @@ DEPENDENCIES
   devise
   devise-i18n
   dotenv-rails
+  image_processing (~> 1.2)
   jbuilder (~> 2.7)
   jquery-rails
   jquery-ui-rails
   kaminari
   listen (~> 3.3)
+  net-imap
+  net-pop
+  net-smtp
   pg (~> 1.1)
   pry-rails
   puma (~> 5.0)
