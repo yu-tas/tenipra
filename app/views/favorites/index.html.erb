@@ -1,0 +1,18 @@
+<div class="grid-container">
+  <% @favorites.each do |favorite| %>
+    <div class="grid-item">
+      <% if favorite.image.attached? %>
+        <%= image_tag favorite.image.variant(resize_and_pad: [200, 200]), class: "flower-image" %>
+      <% end %>
+      <div class="image-info">
+        <div class="user-name"><%= favorite.user.name %></div>
+        <div class="flower-name"><%= favorite.name %></div>
+        <div class="flower-description"><%= favorite.description %></div>
+        <div class="created-at"><%= time_ago_in_words(favorite.created_at) %>前</div>
+      </div>
+      <div class="actions">
+          <%= link_to '詳細', favorite %>
+      </div>
+    </div>
+  <% end %>
+</div>

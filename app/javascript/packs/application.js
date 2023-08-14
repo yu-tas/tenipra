@@ -6,6 +6,7 @@ import $ from 'jquery';
 import 'jquery-ui-dist/jquery-ui';
 
 
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
