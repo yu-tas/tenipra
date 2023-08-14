@@ -1,4 +1,9 @@
 class FavoritesController < ApplicationController
+  def index
+    user = User.find(params[:user_id])
+    @favorites = user.favorite_menus
+  end
+
   def create
     @menu = Menu.find_by(id: params[:menu_id])
     if @menu
