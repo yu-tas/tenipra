@@ -12,6 +12,7 @@
 
   <body>
     <% if user_signed_in? %>
+      <%= link_to 'プロフィール', user_path(current_user.id) %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
       <div>あなたの名前:<%= current_user.name %></div> 
     <% else %>
