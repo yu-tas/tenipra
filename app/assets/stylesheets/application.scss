@@ -3,9 +3,9 @@
  *= require_self
  *= require jquery-ui
  */
- 
 
- #court-container {
+
+.court-container {
   position: relative;
   width: 890px; /* 画像の幅の合計 (395px * 2) + 画像間のマージン (50px) */
   height: 700px; /* 画像の高さ */
