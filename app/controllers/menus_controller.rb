@@ -1,4 +1,6 @@
 class MenusController < ApplicationController
+  before_action :authorize_admin, only: [:update] # ここで必要に応じてアクションを制限
+
   def index
     @q = Menu.order(created_at: :desc).ransack(params[:q])
     @menus = @q.result(distinct: true).page(params[:page]).per(10)
@@ -8,10 +10,6 @@ class MenusController < ApplicationController
   def show
     @menu = Menu.find(params[:id])
     @favorite = current_user&.favorites&.find_by(menu_id: @menu.id)
-  end  
-
-  def show
-    @menu = Menu.find(params[:id])
     @player_positions = @menu.player_positions
   end
 

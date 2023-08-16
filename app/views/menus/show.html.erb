@@ -1,47 +1,65 @@
-  <h1>メニュー詳細</h1>
-<% if user_signed_in? && @favorite.present? %>
-  <%= link_to 'お気に入り解除する', favorite_path(@favorite), method: :delete, class: 'btn btn-danger favorite-button', remote: true, data: {menu_id: @menu.id} %>
-<% elsif user_signed_in? %>
-  <%= link_to 'お気に入りする', favorites_path(menu_id: @menu.id), method: :post, class: 'btn btn-primary favorite-button', remote: true, data: {menu_id: @menu.id} %>
-<% end %>
+  <div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1><%= @menu.title %></h1>
+    <div>
+      <% if user_signed_in? && @favorite.present? %>
+        <%= link_to 'お気に入り解除する', favorite_path(@favorite), method: :delete, class: 'btn btn-danger favorite-button', remote: true, data: {menu_id: @menu.id} %>
+      <% elsif user_signed_in? %>
+        <%= link_to 'お気に入りする', favorites_path(menu_id: @menu.id), method: :post, class: 'btn btn-primary favorite-button', remote: true, data: {menu_id: @menu.id} %>
+      <% end %>
+    </div>
+  </div>
 
+  <div class="card mt-4">
+    <div class="card-body"> 
+      <% if @menu.video.attached? %>
+        <div class="embed-responsive embed-responsive-4by3">
+          <video class="embed-responsive-item" controls>
+            <source src="<%= url_for(@menu.video) %>" type="video/mp4">
+          </video>
+        </div>
+      <% else %>
+        <p>No video attached</p>
+      <% end %>
+      <p class="card-text">難易度: <%= @menu.difficulty_level.step %></p>
+      <p class="card-text">ラベル：
+      <% @menu.labels.each do |label| %>
+        <span class="badge badge-secondary"><%= label.name %></span>
+      <% end %>
+      </p>
+      <p class="card-text">説明: <%= @menu.description %></p>
+    </div>
+  </div>
 
-<p>タイトル: <%= @menu.title %></p>
-<p>説明: <%= @menu.description %></p>
-<p>作成日時: <%= @menu.created_at.strftime('%Y-%m-%d %H:%M:%S') %></p>
-<% if @menu.video.attached? %>
-  <p>Video: </p>
-  <video width="640" height="480" controls>
-    <source src="<%= url_for(@menu.video) %>" type="video/mp4">
-  </video>
-<% else %>
-  <p>No video attached</p>
-<% end %>
-<p>Difficulty Level: <%= @menu.difficulty_level.step %></p>
-<p>ラベル：
-<% @menu.labels.each do |label| %>
-  <%= label.name %>
-<% end %>
-</p>
-              
+  <div class="card mt-4">
+  <div class="card-body">
+    <%= form_with id: 'calculate-form' do |f| %>
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <%= f.label :practice_duration, '練習時間（分）' %>
+          <%= f.number_field :practice_duration, name: 'practice_duration', class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-2">
+          <%= f.label :player_count_form, '人数' %>
+          <%= f.number_field :player_count_form, name: 'player_count', class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-2">
+          <%= f.label :court_count, 'コート数' %>
+          <%= f.number_field :court_count, name: 'court_count', class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-2">
+          <%= f.label :set_count, 'セット数' %>
+          <%= f.number_field :set_count, name: 'set_count', class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-4 align-self-end">
+          <%= f.button '計算', type: 'button', id: 'calculate-button', class: 'btn btn-primary' %>
+        </div>
+      </div>
+      <p id="result"></p>
+    <% end %>
+  </div>
+</div>
 
-<%= form_with id: 'calculate-form' do |f| %>
-  <%= f.label :practice_duration, '練習時間（分）' %>
-  <%= f.number_field :practice_duration, name: 'practice_duration' %>
-  <br>
-  <%= f.label :player_count_form, '人数' %>
-  <%= f.number_field :player_count_form, name: 'player_count' %>
-  <br>
-  <%= f.label :court_count, 'コート数' %>
-  <%= f.number_field :court_count, name: 'court_count' %>
-  <br>
-  <%= f.label :set_count, 'セット数' %>
-  <%= f.number_field :set_count, name: 'set_count' %>
-  <br>
-  <%= f.button '計算', type: 'button', id: 'calculate-button' %>
-<% end %>
-
-<p id="result"></p>
 
 
  <%# <div class="tennis-court-image">

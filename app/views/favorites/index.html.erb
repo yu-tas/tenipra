@@ -1,18 +1,30 @@
 <div class="grid-container">
-  <% @favorites.each do |favorite| %>
-    <div class="grid-item">
-      <% if favorite.image.attached? %>
-        <%= image_tag favorite.image.variant(resize_and_pad: [200, 200]), class: "flower-image" %>
-      <% end %>
-      <div class="image-info">
-        <div class="user-name"><%= favorite.user.name %></div>
-        <div class="flower-name"><%= favorite.name %></div>
-        <div class="flower-description"><%= favorite.description %></div>
-        <div class="created-at"><%= time_ago_in_words(favorite.created_at) %>前</div>
+  <% @favorites.each do |menu| %>
+    <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-header">
+            <%= menu.title %>
+          </div>
+          <% if menu.video.attached? %>
+            <video width="100%" controls>
+              <source src="<%= url_for(menu.video) %>" type="video/mp4">
+            </video>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title">難易度: <%= menu.difficulty_level.step %></h5>
+            <p class="card-text">
+              <% menu.labels.each do |label| %>
+                <span class="badge badge-secondary"><%= label.name %></span>
+              <% end %>
+            </p>
+            <%= link_to '詳細', menu_path(menu.id), class: 'btn btn-primary' %>
+            <% if user_signed_in? && @favorites[menu.id].present? %>
+              <%= link_to 'お気に入り解除する', favorite_path(@favorites[menu.id]), method: :delete, class: 'btn btn-danger favorite-button' %>
+            <% elsif user_signed_in? %>
+              <%= link_to 'お気に入りする', favorites_path(menu_id: menu.id), method: :post, class: 'btn btn-primary favorite-button' %>
+            <% end %>
+          </div>
+        </div>
       </div>
-      <div class="actions">
-          <%= link_to '詳細', favorite %>
-      </div>
-    </div>
   <% end %>
 </div>
