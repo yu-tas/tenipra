@@ -2,7 +2,7 @@ class Menu < ApplicationRecord
   rails_admin do
   end
   belongs_to :difficulty_level
-  belongs_to :user
+  # belongs_to :user
   has_one_attached :video
   validates :difficulty_level, presence: true
   has_many :favorites, dependent: :destroy
