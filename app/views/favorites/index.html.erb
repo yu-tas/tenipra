@@ -1,19 +1,6 @@
-
-<div class="container search-form">
-  <h1>メニュー検索</h1>
-  <%= search_form_for @q, url: menus_path do |f| %>
-    <div class="search-fields">
-      <%= f.label :title_cont, 'メニュー名' %>
-      <%= f.search_field :title_cont %>
-      <%= f.label :difficulty_level_step_cont, 'レベル' %>
-      <%= f.search_field :difficulty_level_step_cont %>
-      <%= f.submit '検索', class: 'btn btn-primary mt-0' %>
-    </div>
-  <%end%>
-
-  <div class="row">
-    <% @menus.each do |menu| %>
-      <div class="col-md-4 mb-4">
+<div class="grid-container">
+  <% @favorites.each do |menu| %>
+    <div class="col-md-4 mb-4">
         <div class="card">
           <div class="card-header">
             <%= menu.title %>
@@ -39,10 +26,5 @@
           </div>
         </div>
       </div>
-    <% end %>
-  </div>
+  <% end %>
 </div>
-
-
-
-<%= javascript_pack_tag 'menu/index' %>

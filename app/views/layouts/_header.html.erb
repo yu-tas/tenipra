@@ -1,0 +1,30 @@
+<header>
+  <h1 style="display: inline;">Tenipra</h1>
+  <nav style="display: inline; float: right;">
+  <%= link_to '練習メニューを探す', menus_path %>
+  <% if user_signed_in? && current_user.admin? %> <!-- ユーザーがログインしているかつ管理者かどうかを確認 -->
+    <%= link_to '管理画面', rails_admin_path %> <!-- 管理画面へのリンク -->
+  <% end %>
+    <% if user_signed_in? %>
+      <%= link_to 'プロフィール', user_path(current_user.id) %>
+      <div>あなたの名前:<%= current_user.name %></div>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "新規登録", new_user_registration_path %>
+      <%= link_to "ログイン", new_user_session_path %>
+    <% end %>
+  </nav>
+</header>
+
+
+<div class="content-padding">
+  <% if notice %>
+    <p class="alert alert-notice"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-error"><%= alert %></p>
+  <% end %>
+
+  <%= yield %>
+</div>
+
