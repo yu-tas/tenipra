@@ -1,4 +1,3 @@
-# app/controllers/rails_admin/main_controller.rb
 module RailsAdmin
   class MainController < Config.parent_controller
     def player_positions_edit
