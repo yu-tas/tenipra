@@ -3,7 +3,6 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import $ from 'jquery'
-import '../stylesheets/application.scss'
 import 'jquery-ui-dist/jquery-ui'
 
 
