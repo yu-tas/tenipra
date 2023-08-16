@@ -4,7 +4,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import $ from 'jquery'
 import 'jquery-ui-dist/jquery-ui'
-// import '../../assets/stylesheets/application.scss';
+import '../../assets/stylesheets/application.scss';
 
 
 
