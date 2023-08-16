@@ -21,3 +21,10 @@ ja:
       difficulty_level: 
         step: '段階'
         description: '説明' 
+
+    errors:
+      models:
+        menu:
+          attributes:
+            user:
+              required: "ユーザーは必須です。"

@@ -1,18 +1,22 @@
 class FavoritesController < ApplicationController
+  before_action :set_menu, only: [:create]
+  before_action :set_favorite, only: [:destroy]
   def index
-    user = User.find(params[:user_id])
-    @favorites = user.favorite_menus
-  end
+    if params[:user_id].present? && current_user.id == params[:user_id].to_i
+      @user = User.find(params[:user_id])
+      @favorites = @user.favorites.map(&:menu) # お気に入りに関連するメニューを取得
+    else
+      @favorites = []
+    end
+  end 
 
   def create
-    @menu = Menu.find_by(id: params[:menu_id])
     if @menu
       @favorite = current_user.favorites.create(menu: @menu)
-      message =  "#{@favorite.menu.title}をお気に入りに登録しました！"
+      message = "#{@favorite.menu.title}をお気に入りに登録しました！"
     else
-      message =  "メニューが見つかりませんでした。"
+      message = "メニューが見つかりませんでした。"
     end
-  
     respond_to do |format|
       format.html { redirect_to menus_path, notice: message }
       format.js
@@ -20,18 +24,26 @@ class FavoritesController < ApplicationController
   end
   
   def destroy
-    @favorite = current_user.favorites.find_by(id: params[:id])
-    @menu = @favorite.menu
     if @favorite
+      @menu = @favorite.menu
       @favorite.destroy
       message = "#{@menu.title}をお気に入り解除しました！"
     else
       message = "お気に入りが見つかりませんでした。"
     end
-  
     respond_to do |format|
       format.html { redirect_to menus_path, notice: message }
       format.js
     end
   end  
-end 
+
+  private
+
+  def set_menu
+    @menu = Menu.find_by(id: params[:menu_id])
+  end
+
+  def set_favorite
+    @favorite = current_user.favorites.find_by(id: params[:id])
+  end
+end

@@ -1,0 +1,69 @@
+/*
+ *= require_tree .
+ *= require_self
+ *= require jquery-ui
+ */
+ 
+
+ #court-container {
+  position: relative;
+  width: 890px; /* 画像の幅の合計 (395px * 2) + 画像間のマージン (50px) */
+  height: 700px; /* 画像の高さ */
+}
+
+.court-image {
+  margin-right: 50px;
+  width: 395px;
+  height: 700px;
+  float: left;
+}
+
+.canvas {
+  position: absolute;
+  width: 395px; /* 画像と同じサイズ */
+  height: 700px; /* 画像と同じサイズ */
+}
+
+.canvas:nth-of-type(1) {
+  top: 0;
+  left: 0;
+}
+
+.canvas:nth-of-type(2) {
+  top: 0;
+  left: 445px; /* 最初の画像の幅 + 画像間のマージン */
+}
+
+
+.marker {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  position: absolute;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  padding: 10px;
+  z-index: 100;
+}
+
+header h1 {
+  display: inline;
+}
+
+header nav {
+  display: inline;
+  float: right;
+}
+
+header nav div {
+  display: inline;
+}
+
+.content-padding {
+  padding-top: 60px; /* ヘッダーの高さに合わせて調整 */
+}

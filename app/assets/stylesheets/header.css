@@ -1,0 +1,41 @@
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #0121a1fb;
+  padding: 10px;
+  z-index: 100;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+header h1 {
+  display: inline;
+}
+
+header nav {
+  display: inline;
+  float: right;
+}
+
+header nav div {
+  display: inline;
+}
+
+.content-padding {
+  padding-top: 60px; /* ヘッダーの高さに合わせて調整 */
+}
+
+nav a {
+  text-decoration: none;
+  color: #ffffff;          /* テキストを灰色に */
+  padding: 10px;        /* ホバー可能なエリアを広げるためのパディング */
+  display: inline-block;/* ブロックのホバー効果を適用 */
+  vertical-align: middle;/* 文字を真ん中に配置 */
+  transition: background-color 0.3s; /* 背景色変更の滑らかな遷移 */
+}
+
+nav a:hover {
+  background-color: #0056b3; /* ホバー時の背景色を淡い灰色に */
+  text-decoration: none;
+}

@@ -8,6 +8,7 @@ class User < ApplicationRecord
   end
   has_one_attached :profile_image
   has_many :favorites, dependent: :destroy
+  has_many :favorite_menus, through: :favorites, source: :menu
   has_many :menus
   validates :name, presence: true, length: { minimum: 2, maximum: 50 }
   validate :profile_image_size_validation
