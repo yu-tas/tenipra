@@ -1,15 +1,14 @@
 class FavoritesController < ApplicationController
   before_action :set_menu, only: [:create]
   before_action :set_favorite, only: [:destroy]
-
   def index
     if params[:user_id].present? && current_user.id == params[:user_id].to_i
-      user = User.find(params[:user_id])
-      @favorites = user.favorite_menus
+      @user = User.find(params[:user_id])
+      @favorites = @user.favorites.map(&:menu) # お気に入りに関連するメニューを取得
     else
       @favorites = []
     end
-  end
+  end 
 
   def create
     if @menu
