@@ -1,4 +1,4 @@
-  <div class="container mt-4">
+<div class="container mt-4">
   <div class="d-flex justify-content-between align-items-center">
     <h1><%= @menu.title %></h1>
     <div>
@@ -32,40 +32,34 @@
   </div>
 
   <div class="card mt-4">
-  <div class="card-body">
-    <%= form_with id: 'calculate-form' do |f| %>
-      <div class="form-row">
-        <div class="form-group col-md-2">
-          <%= f.label :practice_duration, '練習時間（分）' %>
-          <%= f.number_field :practice_duration, name: 'practice_duration', class: 'form-control' %>
+    <div class="card-body">
+      <%= form_with id: 'calculate-form' do |f| %>
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <%= f.label :practice_duration, '練習時間（分）' %>
+            <%= f.number_field :practice_duration, name: 'practice_duration', class: 'form-control' %>
+          </div>
+          <div class="form-group col-md-2">
+            <%= f.label :player_count_form, '人数' %>
+            <%= f.number_field :player_count_form, name: 'player_count', class: 'form-control' %>
+          </div>
+          <div class="form-group col-md-2">
+            <%= f.label :court_count, 'コート数' %>
+            <%= f.number_field :court_count, name: 'court_count', class: 'form-control' %>
+          </div>
+          <div class="form-group col-md-2">
+            <%= f.label :set_count, 'セット数' %>
+            <%= f.number_field :set_count, name: 'set_count', class: 'form-control' %>
+          </div>
+          <div class="form-group col-md-4 align-self-end">
+            <%= f.button '計算', type: 'button', id: 'calculate-button', class: 'btn btn-primary' %>
+          </div>
         </div>
-        <div class="form-group col-md-2">
-          <%= f.label :player_count_form, '人数' %>
-          <%= f.number_field :player_count_form, name: 'player_count', class: 'form-control' %>
-        </div>
-        <div class="form-group col-md-2">
-          <%= f.label :court_count, 'コート数' %>
-          <%= f.number_field :court_count, name: 'court_count', class: 'form-control' %>
-        </div>
-        <div class="form-group col-md-2">
-          <%= f.label :set_count, 'セット数' %>
-          <%= f.number_field :set_count, name: 'set_count', class: 'form-control' %>
-        </div>
-        <div class="form-group col-md-4 align-self-end">
-          <%= f.button '計算', type: 'button', id: 'calculate-button', class: 'btn btn-primary' %>
-        </div>
-      </div>
-      <p id="result"></p>
-    <% end %>
+        <p id="result"></p>
+      <% end %>
+    </div>
   </div>
-</div>
-
-
-
- <%# <div class="tennis-court-image">
-   <%= image_tag("テニスコート.jpeg", class: "court-image", alt: "Tennis Court") %>
-   <%# <%= image_tag("テニスコート.jpeg", class: "court-image", alt: "Tennis Court") %>
- </div> 
+</div> 
 
 <div id="court-container"></div>
 
@@ -93,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let i = 0; i < court_count; i++) {
             // 画像の追加
             const courtImage = document.createElement('img');
-            window.courtImagePath = "<%= image_url('tennis_court.jpeg') %>";                              //jsファイルに移動する場合は、この記述だけHTMLに残す。（scriptタグで囲って）
+            window.courtImagePath = "<%= image_url('tennis_court.jpg') %>";                              //jsファイルに移動する場合は、この記述だけHTMLに残す。（scriptタグで囲って）
             courtImage.src = window.courtImagePath;
             courtImage.className = 'court-image';
             courtImage.alt = 'Tennis Court';
@@ -136,24 +130,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-
-
-
-
-
-
-
-
-<%# <label for="player_count_canvas">人数:</label>
-<select id="player_count_canvas">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-</select>
-
-<%= image_tag("テニスコート.jpeg", id: "court", alt: "Tennis Court") %>
-<%# <canvas id="canvas" width="400" height="200"></canvas> %>
 
 
 <%# <%= javascript_pack_tag 'menu/show' %> 
