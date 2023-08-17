@@ -61,7 +61,7 @@
   </div>
 </div> 
 
-<div id="court-container"></div>
+<div class="court-container" id="court-container"></div>
 
  <%= link_to 'メニュー一覧に戻る', menus_path, class: 'btn btn-primary' %>
 <script>
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let court_count = parseFloat(document.querySelector('input[name="court_count"]').value);
         const set_count = parseFloat(document.querySelector('input[name="set_count"]').value);
 
-        const result = practice_duration / player_count / court_count / set_count;
+        const result = practice_duration / player_count / court_count / set_count;1
         const roundedResult = result.toFixed(1);
         const playerPerCourt = Math.floor(player_count / court_count);
         const extraPlayer = player_count % court_count;
