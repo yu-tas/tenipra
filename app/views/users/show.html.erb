@@ -5,7 +5,7 @@
       <% if @user.profile_image.attached? %>
         <%= image_tag @user.profile_image.variant(resize: "200x200"), class: "profile-image" %>
       <% else %>
-        <%= image src "/images/default_profile_image.jpeg", alt: "デフォルトプロフィール画像", class: "profile-image", size: "200x200" %>
+        <%= image src "/default_profile_image.jpeg", alt: "デフォルトプロフィール画像", class: "profile-image", size: "200x200" %>
       <% end %>
       <% if @user == current_user %>
         <p>メールアドレス: <%= @user.email %></p>
