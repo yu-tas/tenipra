@@ -24,7 +24,10 @@ users = User.all
   Menu.create!(
     title: "Menu Title #{i + 1}",
     description: "Description for Menu #{i + 1}",
+
     video_link: "",
+
+
     difficulty_level_id: 1,
     practice_duration: 30,
     sets: 3,
