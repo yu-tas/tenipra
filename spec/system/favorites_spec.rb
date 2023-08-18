@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'お気に入り管理機能', type: :system do
   let!(:user) { FactoryBot.create(:user) }
-  let!(:menu) { FactoryBot.create(:flower, user: user) }
-  let!(:second_menu) { FactoryBot.create(:second_menu, user: user) }
+  let!(:menu) { FactoryBot.create(:menu) }
+  let!(:second_menu) { FactoryBot.create(:second_menu) }
 
   describe 'お気に入り追加機能のテスト' do
     context 'お気に入りに追加した場合' do
@@ -34,7 +34,7 @@ RSpec.describe 'お気に入り管理機能', type: :system do
         click_link '詳細', match: :first
         sleep(0.5)
         click_link 'お気に入りを解除する'
-        expect(page).to have_content '花の詳細情報'
+        expect(page).to have_content '詳細'
         expect(page).to have_content 'お気に入りする'
       end
     end
@@ -52,8 +52,8 @@ RSpec.describe 'お気に入り管理機能', type: :system do
         click_link 'お気に入りする'
         click_link 'プロフィール'
         click_link 'お気に入り一覧'
-        expect(page).to have_content '花のお気に入り一覧'
-        expect(page).to have_content 'ひまわり'
+        expect(page).to have_content '練習メニューのお気に入り一覧'
+        expect(page).to have_content '基本練習'
       end
     end
   end
