@@ -1,5 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
-  # before_action :login_user_cannot, only: :new
+  before_action :login_user_access_restricted, only: :new
 
   def guest_sign_in
     user = User.guest
@@ -13,9 +13,9 @@ class Users::SessionsController < Devise::SessionsController
     redirect_to user_path(user.id)
   end
 
-  # def login_user_access_restricted
-  #   if user_signed_in?
-  #     redirect_to menus_path 
-  #   end
-  # end
+  def login_user_access_restricted
+    if user_signed_in?
+      redirect_to menus_path 
+    end
+  end
 end

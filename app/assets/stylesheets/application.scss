@@ -45,30 +45,6 @@
   position: absolute;
 }
 
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: #f8f9fa;
-  padding: 10px;
-  z-index: 100;
-}
 
-header h1 {
-  display: inline;
-}
-
-header nav {
-  display: inline;
-  float: right;
-}
-
-header nav div {
-  display: inline;
-}
-
-.content-padding {
-  padding-top: 60px; /* ヘッダーの高さに合わせて調整 */
-}
 
 
