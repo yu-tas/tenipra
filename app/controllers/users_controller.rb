@@ -1,19 +1,14 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
-  before_action :confirm_correct_user, only: [:edit, :update]
+  before_action :confirm_correct_user, only: [:show, :edit, :update]
 
   def show
     @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
-    if @user == current_user
-      render "edit"
-    else
-      redirect_to users_path
-    end
+    render "edit"
   end
 
   def update
@@ -38,7 +33,6 @@ class UsersController < ApplicationController
   end
 
   def confirm_correct_user
-    @user = User.find(params[:id])
     unless @user == current_user
       redirect_to menus_path, alert: "アクセス権限がありません。"
     end

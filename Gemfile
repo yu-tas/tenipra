@@ -59,7 +59,7 @@ end
 
 group :test do
   gem 'capybara', '>= 3.26'
-  gem 'webdrivers'
+  gem 'webdrivers', '~> 5.3', '>= 5.3.1'
 end
 
 

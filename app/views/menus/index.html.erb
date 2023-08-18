@@ -4,9 +4,9 @@
   <%= search_form_for @q, url: menus_path do |f| %>
     <div class="search-fields">
       <%= f.label :title_cont, 'メニュー名' %>
-      <%= f.search_field :title_cont %>
+      <%= f.search_field :title_cont, placeholder: 'タイトルを入力' %>
       <%= f.label :difficulty_level_step_cont, 'レベル' %>
-      <%= f.search_field :difficulty_level_step_cont %>
+      <%= f.search_field :difficulty_level_step_cont, placeholder: 'レベルを入力' %>
       <%= f.submit '検索', class: 'btn btn-primary mt-0' %>
     </div>
   <%end%>
@@ -32,9 +32,9 @@
             </p>
             <%= link_to '詳細', menu_path(menu.id), class: 'btn btn-primary' %>
             <% if user_signed_in? && @favorites[menu.id].present? %>
-              <%= link_to 'お気に入り解除する', favorite_path(@favorites[menu.id]), method: :delete, class: 'btn btn-danger favorite-button' %>
+              <%= link_to 'お気に入り解除', favorite_path(@favorites[menu.id]), method: :delete, class: 'btn btn-danger favorite-button' %>
             <% elsif user_signed_in? %>
-              <%= link_to 'お気に入りする', favorites_path(menu_id: menu.id), method: :post, class: 'btn btn-primary favorite-button' %>
+              <%= link_to 'お気に入り', favorites_path(menu_id: menu.id), method: :post, class: 'btn btn-primary favorite-button' %>
             <% end %>
           </div>
         </div>

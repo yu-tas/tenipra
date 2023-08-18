@@ -1,5 +1,49 @@
-<h1>Homes#show</h1>
+<div class="container mt-5">
+  <h1 class="mb-4 text-center">Tenipraはテニスの練習メニュー提供アプリです</h1>
 
- <p><%= link_to '今すぐテニプラを使ってみる!', menus_path, class: 'submit-button' %></p>
-<%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: 'custom-link' %>
-<%= link_to 'ゲストログイン（管理者用）', users_guest_admin_sign_in_path, method: :post, class: 'custom-link' %>
+  <div class="jumbotron">
+    <p>Tenipraとは、誰もがテニスの練習メニューを実施することができるようにするためのアプリケーションです。</p>
+    <p><%= link_to 'テニプラを使ってみる!', menus_path, class: 'btn btn-primary' %></p>
+  </div>
+
+  <h2 class="mb-4 text-center">機能について</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-header">練習メニューの詳細機能</div>
+        <div class="card-body">
+          <ul>
+            <li>管理者が投稿した練習メニューの情報を、一覧画面で閲覧できます。</li>
+            <li>好みの練習メニューや特定の条件で、練習メニューの情報を検索できます。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-header">練習設定機能</div>
+        <div class="card-body">
+          <ul>
+            <li>投稿された練習メニューの情報に対して、練習人数、練習時間、コート面数、セット数を設定することで詳細な練習状況を設定できます。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-header">お気に入り機能</div>
+        <div class="card-body">
+          <ul>
+            <li>これからも使いたい！と思った投稿を「お気に入り」することで、気に入った練習メニューを簡単に記録できます。</li>
+            <li>いいねした投稿はマイページでいつでも確認でき、すぐに使うことができます。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: 'btn btn-outline-secondary m-2' %>
+    <%= link_to 'ゲストログイン（管理者用）', users_guest_admin_sign_in_path, method: :post, class: 'btn btn-outline-secondary m-2' %>
+  </div>
+</div>
