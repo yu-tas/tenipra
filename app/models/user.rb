@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  validates :name, presence: true, length: { maximum: 100 }
+  validates :email, presence: true, length: { maximum: 100 }
+  validates :password, length: { in: 6..100 }, if: :password_required?
     rails_admin do
     configure :encrypted_password do
       hide
@@ -34,5 +37,10 @@ class User < ApplicationRecord
     if profile_image.attached?
       errors[:profile_image] << "should be less than 2MB" if profile_image.blob.byte_size > 2.megabytes
     end
-  end  
+  end
+  
+  def password_required?
+    new_record? || password.present? || password_confirmation.present?
+  end
+  
 end

@@ -7,6 +7,7 @@ header {
   z-index: 100;
   margin-bottom: 10px;
   color: #ffffff;
+  height: 60px;
 }
 
 header h1 {
@@ -38,4 +39,8 @@ nav a {
 nav a:hover {
   background-color: #0056b3; /* ホバー時の背景色を淡い灰色に */
   text-decoration: none;
+}
+
+.content-wrapper {
+  padding-top: 70px; /* ヘッダーの高さ + パディングの値と同じにする */
 }
