@@ -66,6 +66,7 @@ ja:
       created_at: "日時"
       item: "アイテム"
       message: "メッセージ"
+      last_created: "最終更新"
     actions:
       dashboard:
         title: "サイト管理"

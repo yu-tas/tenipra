@@ -8,10 +8,12 @@ labels.each do |label_name|
 end
 
 5.times do |i|
+  name = Faker::Games::Pokemon.name
+  email = Faker::Internet.email
   User.create!(
-    email: "user#{i + 1}@example.com",
+    email: email,
     password: "password",
-    name: "User #{i + 1}",
+    name: name,
     admin: false
   )
 end

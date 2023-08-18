@@ -1,5 +1,19 @@
 ja:
   activerecord:
+    models:
+      active_storage/blob: "添付ファイル"
+      active_storage/attachment: "添付"
+      active_storage/variant_record: "バリアント"
+      blob: ブロブ
+      difficulty_level: 難易度
+      favorite: お気に入り
+      label: ラベル
+      menu: メニュー
+      menu_label: メニューラベル
+      variant_record: バリアントレコード
+      user: ユーザー
+      product: 商品 # ここも追加しています
+
     attributes:
       menu:
         id: 'ID'
@@ -10,6 +24,7 @@ ja:
         practice_duration: '練習時間'
         sets: 'セット'
         player_count: 'プレイヤー数'
+        player_positions: 'プレーヤーポジション'
         created_at: '作成日時'
         updated_at: '更新日時'
         video: 'ビデオ'
@@ -17,10 +32,12 @@ ja:
         favorite_users: 'お気に入りユーザー'
         menu_labels: 'メニューラベル'
         labels: 'ラベル'
+        User: 'ユーザー'
 
-      difficulty_level: 
+      difficulty_level:
         step: '段階'
-        description: '説明' 
+        description: '説明'
         difficult_level: 難易度
+
 
         

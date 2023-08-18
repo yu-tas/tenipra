@@ -9,12 +9,12 @@
           <%= form_with model: @user, local: true do |f| %>
             <div class="form-group">
               <%= f.label :name %>
-              <%= f.text_field :name, class: 'form-control mb-3' %>
+              <%= f.text_field :name, class: 'form-control mb-3', placeholder: '名前' %>
             </div>
 
             <div class="form-group">
               <%= f.label :email %>
-              <%= f.email_field :email, class: 'form-control mb-3' %>
+              <%= f.email_field :email, class: 'form-control mb-3', placeholder: 'パスワード' %>
             </div>
 
             <div class="form-group">
@@ -24,12 +24,12 @@
 
             <div class="form-group">
               <%= f.label :password %>
-              <%= f.password_field :password, class: 'form-control mb-3' %>
+              <%= f.password_field :password, class: 'form-control mb-3', placeholder: 'パスワード' %>
             </div>
 
             <div class="form-group">
               <%= f.label :password_confirmation %>
-              <%= f.password_field :password_confirmation, class: 'form-control mb-3' %>
+              <%= f.password_field :password_confirmation, class: 'form-control mb-3', placeholder: 'パスワード' %>
             </div>
 
             <%= f.submit "更新", class: "btn btn-primary"%>
