@@ -31,7 +31,6 @@ RSpec.describe 'お気に入り管理機能', type: :system do
         sleep(0.5)
         click_link 'お気に入り'
         click_link 'お気に入り解除'
-        binding.pry
         expect(page).to have_content 'お気に入り'
       end
     end

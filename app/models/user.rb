@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-    validates :name, presence: { message: "名前を入力してください" }, length: { maximum: 100, message: "名前は100文字以内で入力してください" }
-    validates :email, presence: { message: "メールアドレスを入力してください" }, length: { maximum: 100, message: "メールアドレスは100文字以内で入力してください" }
-    validates :password, length: { in: 6..100, message: "パスワードは6文字以上100文字以下で入力してください" }, if: :password_required?         
+    validates :name, presence:true, length: { maximum: 100, message: "名前は100文字以内で入力してください" }
+    validates :email, length: { maximum: 100, message: "アドレスは100文字以内で入力してください" }
+    validates :password, length: { in: 6..100, message: "は6文字以上100文字以下で入力してください" }, if: :password_required?         
     rails_admin do
     configure :encrypted_password do
       hide
@@ -13,7 +13,6 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_menus, through: :favorites, source: :menu
   has_many :menus
-  validates :name, presence: true, length: { minimum: 2, maximum: 50 }
   validate :profile_image_size_validation
 
   def self.guest
