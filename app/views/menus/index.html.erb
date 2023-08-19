@@ -4,9 +4,9 @@
   <%= search_form_for @q, url: menus_path do |f| %>
     <div class="search-fields">
       <%= f.label :title_cont, 'メニュー名' %>
-      <%= f.search_field :title_cont, placeholder: 'タイトルを入力' %>
-      <%= f.label :difficulty_level_step_cont, 'レベル' %>
-      <%= f.search_field :difficulty_level_step_cont, placeholder: 'レベルを入力' %>
+      <%= f.search_field :title_cont, placeholder: '動画投稿など' %>
+      <%= f.label :difficulty_level_step_cont, '難易度' %>
+      <%= f.search_field :difficulty_level_step_cont, placeholder: '初級など' %>
       <%= f.submit '検索', class: 'btn btn-primary mt-0' %>
     </div>
   <%end%>

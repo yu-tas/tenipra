@@ -4,7 +4,7 @@ class Menu < ApplicationRecord
   belongs_to :difficulty_level
   # belongs_to :user
   has_one_attached :video
-  validates :difficulty_level, presence: true
+  validates :difficulty_level, presence: { message: "難易度を設定してください" }
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user
   has_many :menu_labels, dependent: :destroy
