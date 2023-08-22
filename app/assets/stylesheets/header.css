@@ -2,7 +2,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #0121a1fb;
+  background-color: #16ae32;
   padding: 10px;
   z-index: 100;
   margin-bottom: 10px;
@@ -29,18 +29,29 @@ header nav div {
 
 nav a {
   text-decoration: none;
-  color: #ffffff;          /* テキストを灰色に */
-  padding: 10px;        /* ホバー可能なエリアを広げるためのパディング */
-  display: inline-block;/* ブロックのホバー効果を適用 */
-  vertical-align: middle;/* 文字を真ん中に配置 */
-  transition: background-color 0.3s; /* 背景色変更の滑らかな遷移 */
+  color: #ffffff;
+  padding: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  transition: background-color 0.3s, color 0.3s; /* 色の遷移も追加 */
 }
 
 nav a:hover {
-  background-color: #0056b3; /* ホバー時の背景色を淡い灰色に */
+  background-color: #2ebc4f; /* ホバー時の背景色をヘッダーの色より少し明るく */
+  color: #ffffff; /* ホバー時の文字色を白に */
   text-decoration: none;
 }
 
 .content-wrapper {
   padding-top: 70px; /* ヘッダーの高さ + パディングの値と同じにする */
+}
+
+.site-title {
+  color: #ffffff; /* ヘッダーの背景色と同じ白色に設定 */
+  padding: 10px;
+}
+
+.site-title:hover {
+  color: #ffffff; /* ホバー時も白色に設定 */
+  text-decoration: none;
 }

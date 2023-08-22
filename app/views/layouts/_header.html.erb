@@ -1,5 +1,5 @@
 <header>
-  <h1 style="display: inline;">Tenipra</h1>
+   <h1><%= link_to 'Tenipra', root_path, class: "site-title" %></h1>
   <nav style="display: inline; float: right;">
   <%= link_to '練習メニューを探す', menus_path %>
   <% if user_signed_in? && current_user.admin? %> <!-- ユーザーがログインしているかつ管理者かどうかを確認 -->

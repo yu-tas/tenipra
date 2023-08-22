@@ -67,7 +67,7 @@
 
 <%= javascript_pack_tag 'menu/show' %>
 <script> 
- window.courtImagePath = "<%= image_url('tennis_court.jpg') %>";
+window.courtImagePath = "<%= image_url('tennis_court.jpg') %>";
 window.playerPositions = <%= raw @player_positions.to_json %>;   
 </script>
 
