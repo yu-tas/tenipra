@@ -15,7 +15,8 @@ set :branch, ENV['BRANCH'] || 'master'
 set :deploy_to, '/var/www/Tenipra'
 
 # シンボリックリンクをはるフォルダ・ファイル
-set :linked_files, %w{/var/www/Tenipra/shared/.env config/secrets.yml}
+# set :linked_files, %w{/var/www/Tenipra/shared/.env config/secrets.yml}
+set :linked_files, %w{config/secrets.yml}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/uploads}
 
 # 保持するバージョンの個数(※後述)
