@@ -7,8 +7,8 @@
 
 .court-container {
   position: relative;
-  width: 890px; /* 画像の幅の合計 (395px * 2) + 画像間のマージン (50px) */
-  height: 700px; /* 画像の高さ */
+  width: 890px; 
+  height: 700px; 
   margin: 0 auto;
 }
 
@@ -21,8 +21,8 @@
 
 .canvas {
   position: absolute;
-  width: 395px; /* 画像と同じサイズ */
-  height: 700px; /* 画像と同じサイズ */
+  width: 395px; 
+  height: 700px; 
   top: 0;
   left: 0;
 }
@@ -34,7 +34,7 @@
 
 .canvas:nth-of-type(2) {
   top: 0;
-  left: 445px; /* 最初の画像の幅 + 画像間のマージン */
+  left: 445px; 
 }
 
 
@@ -51,4 +51,18 @@ body {
   padding: 0;
 }
 
+.detail-container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 30px;
+}
 
+.profile-image {
+  border-radius: 50%;
+}
+
+.actions .btn {
+  display: block; /* ボタンをブロック要素として配置 */
+  margin-bottom: 10px; /* ボタン間のスペース */
+}
