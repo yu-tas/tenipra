@@ -2,7 +2,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #16ae32;
+  background-color: #4190de;
   padding: 10px;
   z-index: 100;
   margin-bottom: 10px;
@@ -37,7 +37,7 @@ nav a {
 }
 
 nav a:hover {
-  background-color: #2ebc4f; /* ホバー時の背景色をヘッダーの色より少し明るく */
+  background-color: #4190de; /* ホバー時の背景色をヘッダーの色より少し明るく */
   color: #ffffff; /* ホバー時の文字色を白に */
   text-decoration: none;
 }

@@ -3,6 +3,7 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: #16ae32e9; /* 任意の背景色を設定 */
+  background-color: #4190de; 
   text-align: center;
+  color: white;
 }
